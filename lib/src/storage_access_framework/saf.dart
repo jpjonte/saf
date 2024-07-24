@@ -1,5 +1,5 @@
-import 'package:saf/src/storage_access_framework/api.dart';
 import 'package:saf/src/channels.dart';
+import 'package:saf/src/storage_access_framework/api.dart';
 
 /// Extend the native SAF api funtionality and add some of the real Use case methods for Applicatoions
 class Saf {
@@ -8,6 +8,8 @@ class Saf {
   Saf(this._directory) {
     _uriString = makeUriString(path: _directory, isTreeUri: true);
   }
+
+  String? get currentDirectory => _directory;
 
   /// Request the user for access to [Directory Permission], if access hasn't already
   /// been grant access before.
