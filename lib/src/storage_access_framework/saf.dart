@@ -230,7 +230,7 @@ class Saf {
   /// Request the user for access to [Directory Permission] of User choice
   ///
   /// Returns [bool].
-  static Future<bool?> getDynamicDirectoryPermission(
+  static Future<String?> getDynamicDirectoryPermission(
       {bool grantWritePermission = true}) async {
     try {
       const kOpenDocumentTree = 'openDocumentTree';
@@ -245,8 +245,10 @@ class Saf {
       };
       final selectedDirectoryUri = await kDocumentFileChannel
           .invokeMethod<String?>(kOpenDocumentTree, args);
-      if (selectedDirectoryUri != null) return true;
-      return false;
+
+      if (selectedDirectoryUri == null) return null;
+
+      return makeDirectoryPath(selectedDirectoryUri);
     } catch (e) {
       return null;
     }
