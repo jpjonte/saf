@@ -258,6 +258,22 @@ Future<bool?> exists(Uri uri) async {
   return await kDocumentFileChannel.invokeMethod<bool>(kExists, args);
 }
 
+/// Check if a given [uri] is a file
+Future<bool?> isFile(Uri uri) async {
+  return await kDocumentFileChannel.invokeMethod<bool>(
+    'isFile',
+    {'uri': '$uri'},
+  );
+}
+
+/// Check if a given [uri] is a directory
+Future<bool?> isDirectory(Uri uri) async {
+  return await kDocumentFileChannel.invokeMethod<bool>(
+    'isDirectory',
+    {'uri': '$uri'},
+  );
+}
+
 /// Equivalent to `DocumentsContract.buildDocumentUriUsingTree`
 ///
 /// [Refer to details](https://developer.android.com/reference/android/provider/DocumentsContract#buildDocumentUriUsingTree%28android.net.Uri,%20java.lang.String%29)

@@ -134,6 +134,18 @@ internal class DocumentFileApi(private val plugin: SafPlugin) :
                 documentFromUri(plugin.context, call.argument<String?>("uri") as String)?.exists()
             )
           }
+      IS_FILE ->
+          if (Build.VERSION.SDK_INT >= API_21) {
+            result.success(
+                documentFromUri(plugin.context, call.argument<String?>("uri") as String)?.isFile
+            )
+          }
+      IS_DIRECTORY ->
+          if (Build.VERSION.SDK_INT >= API_21) {
+            result.success(
+                documentFromUri(plugin.context, call.argument<String?>("uri") as String)?.isDirectory
+            )
+          }
       DELETE ->
           if (Build.VERSION.SDK_INT >= API_21) {
             result.success(
