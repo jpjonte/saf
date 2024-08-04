@@ -1,5 +1,5 @@
 import 'package:saf/src/channels.dart';
-import 'package:saf/src/storage_access_framework/api.dart' as api show exists;
+import 'package:saf/src/storage_access_framework/api.dart' as api;
 import 'package:saf/src/storage_access_framework/api.dart' hide exists;
 
 /// Extend the native SAF api funtionality and add some of the real Use case methods for Applicatoions
@@ -435,5 +435,17 @@ class Saf {
     final uriString = makeUriString(path: path);
 
     return api.exists(Uri.parse(uriString));
+  }
+
+  static Future<bool?> isFile(String path) {
+    final uriString = makeUriString(path: path);
+
+    return api.isFile(Uri.parse(uriString));
+  }
+
+  static Future<bool?> isDirectory(String path) {
+    final uriString = makeUriString(path: path);
+
+    return api.isDirectory(Uri.parse(uriString));
   }
 }
